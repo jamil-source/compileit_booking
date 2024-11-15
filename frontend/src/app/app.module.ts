@@ -8,6 +8,7 @@ import { SharedBtnComponent } from './shared/components/shared-btn/shared-btn.co
 import { RoomsPageComponent } from './views/rooms-page/rooms-page.component';
 import { provideHttpClient } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SweDatePipe } from './shared/pipes/swe-date.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     SharedBtnComponent,
     RoomsPageComponent,
+    SweDatePipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [provideHttpClient()],

@@ -10,7 +10,11 @@
     </button>
     <div class="text-lg h5 font-semibold">
       <span>
-        {{ shownDates.length > 0 ? shownDates[0] + " - " + shownDates[2] : "" }}
+        {{
+          shownDates.length > 0
+            ? (shownDates[0] | sweDate) + " - " + (shownDates[2] | sweDate)
+            : ""
+        }}
       </span>
     </div>
     <button
@@ -27,8 +31,8 @@
       <thead>
         <tr>
           @for (date of shownDates; track $index) {
-          <th class="text-center h4">
-            {{ date }}
+          <th class="text-center h4 pt-3 pb-3">
+            {{ date | sweDate }}
           </th>
           }
         </tr>
@@ -43,7 +47,7 @@
               $index) {
               <div>
                 <div
-                  class="p-3 mb-3 border rounded shadow-sm"
+                  class="p-3 mb-3 border rounded shadow-sm roomContent"
                   [ngClass]="{
                     'bg-danger text-white': booking.bookerName,
                     'border-success border-2': !booking.bookerName
