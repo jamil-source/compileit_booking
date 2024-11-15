@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.color-primary {
+    color: #1d1d1d;
+}
+
+.background-color-primary {
+    color: #1d1d1d;
+}
+
+.color-success {
+    color: #004c3f;
+}
+
+.background-color-success {
+    color: #004c3f;
+}
+
+.color-booked {
+    color: #ff0000;
+}
+
+.background-color-booked {
+    color: #ff0000;
+}
