@@ -5,6 +5,8 @@ const PORT = 3000;
 
 app.use(express.json());
 
+app.use("/api/bookings", require("./routes/bookingRoutes"));
+
 sequelize
   .sync()
   .then(() => {
