@@ -6,19 +6,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { SharedBtnComponent } from './shared/components/shared-btn/shared-btn.component';
 import { RoomsPageComponent } from './views/rooms-page/rooms-page.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SharedBtnComponent,
-    RoomsPageComponent
+    RoomsPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [provideHttpClient()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
