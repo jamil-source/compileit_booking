@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
 import { SharedBtnComponent } from './shared/components/shared-btn/shared-btn.component';
+import { RoomsPageComponent } from './views/rooms-page/rooms-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SharedBtnComponent
+    SharedBtnComponent,
+    RoomsPageComponent
   ],
   imports: [
     BrowserModule,
