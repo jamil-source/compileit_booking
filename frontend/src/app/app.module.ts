@@ -7,6 +7,7 @@ import { HomeComponent } from './views/home/home.component';
 import { SharedBtnComponent } from './shared/components/shared-btn/shared-btn.component';
 import { RoomsPageComponent } from './views/rooms-page/rooms-page.component';
 import { provideHttpClient } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { provideHttpClient } from '@angular/common/http';
     SharedBtnComponent,
     RoomsPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })

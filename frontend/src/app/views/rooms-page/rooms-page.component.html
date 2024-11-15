@@ -1,9 +1,68 @@
-<div class="d-flex flex-column">
-  @for (booking of bookings; track $index) { @for (room of rooms; track $index)
-  { @if(booking.roomId === room.id){
-  <span>{{ room.name }}</span>
-  <span>{{ booking.startTime }} - {{ booking.endTime }}</span>
-  <span>{{ booking.date }}</span>
+<div class="container py-5">
+  <h1 class="general-header">Välj en tid</h1>
+  <div class="d-flex justify-content-between mb-4">
+    <button
+      class="btn btn-outline-dark rounded-circle mx-2"
+      (click)="prevDate()"
+      [disabled]="activeDateIndex === 0"
+    >
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </button>
+    <div class="text-lg h5 font-semibold">
+      <span>
+        {{ shownDates.length > 0 ? shownDates[0] + " - " + shownDates[2] : "" }}
+      </span>
+    </div>
+    <button
+      class="btn btn-outline-dark rounded-circle mx-2"
+      (click)="nextDate()"
+      [disabled]="activeDateIndex + 3 >= uniqueDatesCount"
+    >
+      <fa-icon [icon]="faArrowRight"></fa-icon>
+    </button>
+  </div>
 
-  } } }
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          @for (date of shownDates; track $index) {
+          <th class="text-center h4">
+            {{ date }}
+          </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          @for (date of shownDates; track $index) {
+          <td class="align-top">
+            @for (room of rooms; track $index) {
+            <div>
+              @for (booking of getBookingsForRoomAndDate(room.id, date); track
+              $index) {
+              <div>
+                <div
+                  class="p-3 mb-3 border rounded shadow-sm"
+                  [ngClass]="{
+                    'bg-danger text-white': booking.bookerName,
+                    'border-success border-2': !booking.bookerName
+                  }"
+                >
+                  <p>{{ room.name }} ({{ room.maximumAmount }})</p>
+                  <p>{{ booking.startTime }} - {{ booking.endTime }}</p>
+                  @if(booking.bookerName){
+                  <p class="text-warning">Bokad av: {{ booking.bookerName }}</p>
+                  }
+                </div>
+              </div>
+              }
+            </div>
+            }
+          </td>
+          }
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
