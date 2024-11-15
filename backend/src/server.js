@@ -1,5 +1,5 @@
-import express from "express";
-import { sequelize } from "../models";
+const express = require("express");
+const { sequelize } = require("../models");
 const app = express();
 const PORT = 3000;
 
@@ -9,7 +9,7 @@ sequelize
   .sync()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Running in ${PORT}`);
+      console.log(`Running on port ${PORT}`);
     });
   })
   .catch((err) => {
