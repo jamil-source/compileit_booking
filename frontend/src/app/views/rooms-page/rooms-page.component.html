@@ -1,1 +1,9 @@
-<p>rooms-page works!</p>
+<div class="d-flex flex-column">
+  @for (booking of bookings; track $index) { @for (room of rooms; track $index)
+  { @if(booking.roomId === room.id){
+  <span>{{ room.name }}</span>
+  <span>{{ booking.startTime }} - {{ booking.endTime }}</span>
+  <span>{{ booking.date }}</span>
+
+  } } }
+</div>
