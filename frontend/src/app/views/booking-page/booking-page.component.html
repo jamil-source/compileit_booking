@@ -1,1 +1,35 @@
-<p>booking-page works!</p>
+<div class="container py-5">
+  <h1 class="general-header">Vem bokar?</h1>
+  <div [formGroup]="bookingForm">
+    <label for="nameInput" class="fs-4 mb-2 fw-500"
+      >Förnamn och efternamn</label
+    >
+    <input
+      formControlName="fullname"
+      class="form-control form-control-lg"
+      [ngClass]="{
+        'is-invalid':
+          bookingForm.controls['fullname'].invalid &&
+          bookingForm.controls['fullname'].touched
+      }"
+      type="text"
+      id="nameInput"
+      placeholder="Skriv ditt fullständiga namn här"
+      (blur)="validateOnBlur()"
+    />
+
+    @if(bookingForm.controls['fullname'].invalid &&
+    bookingForm.controls['fullname'].touched){
+
+    <div class="invalid-feedback d-flex flex-column">
+      @if(bookingForm.controls['fullname'].hasError('required')){
+      <span>Fullständigt namn är obligatoriskt.</span>
+      } @if(bookingForm.controls['fullname'].hasError('specialCharacters')){
+      <span>Namnet får inte innehålla otillåtna tecken.</span>
+      } @if(bookingForm.controls['fullname'].hasError('fullNameValidator')){
+      <span>Ange både för- och efternamn.</span>
+      }
+    </div>
+    }
+  </div>
+</div>

@@ -1,12 +1,13 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export function specialCharactersValidator(): ValidatorFn {
+export function specialCharactersValidator(): ValidationErrors | null {
+  const regex = /^[a-zA-Z\s\-]+$/;
+
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
-    const regex = /^[a-zA-ZåäöÅÄÖ\- ]*$/;
 
     if (value && !regex.test(value)) {
-      return { invalidCharacters: true };
+      return { specialCharacters: true };
     }
     return null;
   };

@@ -10,6 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SweDatePipe } from './shared/pipes/swe-date.pipe';
 import { BookingPageComponent } from './views/booking-page/booking-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,12 @@ import { BookingPageComponent } from './views/booking-page/booking-page.componen
     SweDatePipe,
     BookingPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+  ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })
