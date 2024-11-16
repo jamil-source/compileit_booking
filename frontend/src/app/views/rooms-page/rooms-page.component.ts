@@ -9,6 +9,8 @@ import {
   faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { DataSharingService } from '../../services/shared/data-sharing.service';
 
 @Component({
   selector: 'app-rooms-page',
@@ -34,7 +36,9 @@ export class RoomsPageComponent implements OnInit {
 
   constructor(
     private bookingsService: BookingsService,
-    private roomsService: RoomsService
+    private roomsService: RoomsService,
+    private router: Router,
+    private dataSharingService: DataSharingService
   ) {}
 
   ngOnInit(): void {
@@ -146,7 +150,8 @@ export class RoomsPageComponent implements OnInit {
     if (!this.selectedBooking) return;
 
     if (!this.selectedBooking.bookerName) {
-      console.log(this.selectedBooking);
+      this.dataSharingService.setBooking(this.selectedBooking);
+      this.router.navigate(['/boka']);
     }
   }
 }
