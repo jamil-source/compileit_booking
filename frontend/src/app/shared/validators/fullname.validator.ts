@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export function fullNameValidator(): ValidationErrors | null {
-  const regex = /^[a-zA-Z]+ [a-zA-Z]+$/;
+  const regex = /^[a-zA-ZåäöÅÄÖ]+ [a-zA-ZåäöÅÄÖ]+$/;
 
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
