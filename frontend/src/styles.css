@@ -17,6 +17,10 @@
   background-color: #004c3f;
 }
 
+.border-color-success {
+  border-color: #004c3f;
+}
+
 .color-booked {
   color: #ff0000;
 }
@@ -61,4 +65,3 @@
   border-width: 0 2px 2px 0 !important;
   transform: translate(-50%, -50%) rotate(45deg) !important;
 }
-

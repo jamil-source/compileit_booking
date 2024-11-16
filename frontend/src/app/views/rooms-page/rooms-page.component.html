@@ -104,20 +104,21 @@
             <div>
               @for (booking of getBookingsForRoomAndDate(room.id, date); track
               $index) {
-              <div>
-                <div
-                  class="p-3 mb-3 border rounded shadow-sm roomContent"
-                  [ngClass]="{
-                    'bg-danger text-white': booking.bookerName,
-                    'border-success border-2': !booking.bookerName
-                  }"
-                >
-                  <p>{{ room.name }} ({{ room.maximumAmount }})</p>
-                  <p>{{ booking.startTime }} - {{ booking.endTime }}</p>
-                  @if(booking.bookerName){
-                  <p class="text-warning">Bokad av: {{ booking.bookerName }}</p>
-                  }
-                </div>
+              <div
+                class="p-3 mb-3 border rounded shadow-sm room-content"
+                (click)="selectBooking(booking)"
+                [ngClass]="{
+                  'background-color-booked text-white': booking.bookerName,
+                  'border-success border-2': !booking.bookerName,
+                  'background-color-success text-white':
+                    selectedBooking === booking && !booking.bookerName
+                }"
+              >
+                <p>{{ room.name }} ({{ room.maximumAmount }})</p>
+                <p>{{ booking.startTime }} - {{ booking.endTime }}</p>
+                @if(booking.bookerName){
+                <p class="text-warning">Bokad av: {{ booking.bookerName }}</p>
+                }
               </div>
               }
             </div>
@@ -128,4 +129,7 @@
       </tbody>
     </table>
   </div>
+  @if(selectedBooking){
+  <app-shared-btn (clicked)="handleBooking()" [text]="'Nästa'"></app-shared-btn>
+  }
 </div>

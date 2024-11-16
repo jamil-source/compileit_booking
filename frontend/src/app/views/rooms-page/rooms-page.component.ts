@@ -25,6 +25,7 @@ export class RoomsPageComponent implements OnInit {
   public faChevronDown = faChevronDown;
   public faChevronUp = faChevronUp;
   public filterList = [];
+  public selectedBooking: IBooking;
 
   public bookingsCopy: IBooking[] = [];
 
@@ -130,5 +131,22 @@ export class RoomsPageComponent implements OnInit {
   uncheckAll() {
     this.filterList = [];
     this.bookings = this.bookingsCopy;
+  }
+
+  selectBooking(bookingId: IBooking) {
+    if (this.selectedBooking === bookingId) {
+      this.selectedBooking = null;
+      return;
+    }
+
+    this.selectedBooking = bookingId;
+  }
+
+  handleBooking() {
+    if (!this.selectedBooking) return;
+
+    if (!this.selectedBooking.bookerName) {
+      console.log(this.selectedBooking);
+    }
   }
 }
