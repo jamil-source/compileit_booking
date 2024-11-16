@@ -24,6 +24,9 @@ export class RoomsPageComponent implements OnInit {
   public faArrowLeft = faArrowLeft;
   public faChevronDown = faChevronDown;
   public faChevronUp = faChevronUp;
+  public filterList = []
+
+  public bookingsCopy: IBooking[] = [];
 
   public uniqueDatesCount: number = 0;
   public isDropdownOpen: boolean = false;
@@ -40,9 +43,9 @@ export class RoomsPageComponent implements OnInit {
   getBookingsList() {
     this.bookingsService.getBookings().subscribe({
       next: (result) => {
-        this.bookings = result;
         const today = new Date().toISOString().split('T')[0];
         this.bookings = result.filter((booking) => booking.date >= today);
+        this.bookingsCopy = result.filter((booking) => booking.date >= today);
         this.getRoomsList();
       },
       error: (error) => {
@@ -104,5 +107,23 @@ export class RoomsPageComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   handleOutsideClick(event: Event) {
     this.isDropdownOpen = false;
+  }
+
+
+  addToFilterList(roomId: number, event: Event){
+    const checkbox = event.target as HTMLInputElement
+    checkbox.checked ? this.filterList.push(roomId) : this.filterList = this.filterList.filter(item => item !== roomId)
+  }
+
+
+  filterBookings() {
+    if (this.filterList.length <= 0) {
+      this.bookings = this.bookingsCopy
+      return;
+    }
+
+    this.bookings = this.bookingsCopy.filter(booking =>
+      this.filterList.includes(booking.roomId)
+    );
   }
 }
