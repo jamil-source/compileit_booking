@@ -40,10 +40,18 @@
         </div>
         }
         <div class="d-flex justify-content-center mt-4">
-          <button (click)="filterBookings()" type="button" class="btn btn-dark text-white me-2 px-3 rounded-4 customize-button">
+          <button
+            (click)="filterBookings()"
+            type="button"
+            class="btn btn-dark text-white me-2 px-3 rounded-4 customize-button"
+          >
             Välj
           </button>
-          <button type="button" class="btn btn-dark text-white px-3 rounded-4 customize-button">
+          <button
+            type="button"
+            (click)="uncheckAll()"
+            class="btn btn-dark text-white px-3 rounded-4 customize-button"
+          >
             Avmarkera
           </button>
         </div>

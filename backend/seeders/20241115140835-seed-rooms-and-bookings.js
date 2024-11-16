@@ -1,4 +1,4 @@
-const { Room } = require("../models"); // Importera modeller med require
+const { Room } = require("../models");
 
 module.exports = {
   up: async (queryInterface) => {

@@ -24,7 +24,7 @@ export class RoomsPageComponent implements OnInit {
   public faArrowLeft = faArrowLeft;
   public faChevronDown = faChevronDown;
   public faChevronUp = faChevronUp;
-  public filterList = []
+  public filterList = [];
 
   public bookingsCopy: IBooking[] = [];
 
@@ -109,21 +109,26 @@ export class RoomsPageComponent implements OnInit {
     this.isDropdownOpen = false;
   }
 
-
-  addToFilterList(roomId: number, event: Event){
-    const checkbox = event.target as HTMLInputElement
-    checkbox.checked ? this.filterList.push(roomId) : this.filterList = this.filterList.filter(item => item !== roomId)
+  addToFilterList(roomId: number, event: Event) {
+    const checkbox = event.target as HTMLInputElement;
+    checkbox.checked
+      ? this.filterList.push(roomId)
+      : (this.filterList = this.filterList.filter((item) => item !== roomId));
   }
-
 
   filterBookings() {
     if (this.filterList.length <= 0) {
-      this.bookings = this.bookingsCopy
+      this.bookings = this.bookingsCopy;
       return;
     }
 
-    this.bookings = this.bookingsCopy.filter(booking =>
+    this.bookings = this.bookingsCopy.filter((booking) =>
       this.filterList.includes(booking.roomId)
     );
+  }
+
+  uncheckAll() {
+    this.filterList = [];
+    this.bookings = this.bookingsCopy;
   }
 }
