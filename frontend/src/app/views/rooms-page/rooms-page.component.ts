@@ -33,6 +33,8 @@ export class RoomsPageComponent implements OnInit {
     this.bookingsService.getBookings().subscribe({
       next: (result) => {
         this.bookings = result;
+        const today = new Date().toISOString().split('T')[0]; 
+        this.bookings = result.filter(booking => booking.date >= today);
         this.getRoomsList();
       },
       error: (error) => {
