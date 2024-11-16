@@ -1,1 +1,10 @@
+.customize-button{
+  width: 138px;
+  padding: 13px 0px;
+}
 
+@media (max-width: 576px) {
+  .dropdown-menu {
+    width: 95%;
+  }
+}

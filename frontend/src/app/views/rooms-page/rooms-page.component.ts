@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { BookingsService } from '../../services/http/bookings.service';
 import { RoomsService } from '../../services/http/rooms.service';
 import { IBooking } from '../../interfaces/Bookings/IBooking.interface';
 import { IRoom } from '../../interfaces/Rooms/IRoom.interface';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowRight,
+  faChevronDown,
+  faChevronUp,
+} from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -18,7 +22,11 @@ export class RoomsPageComponent implements OnInit {
   public activeDateIndex: number = 0;
   public faArrowRight = faArrowRight;
   public faArrowLeft = faArrowLeft;
+  public faChevronDown = faChevronDown;
+  public faChevronUp = faChevronUp;
+
   public uniqueDatesCount: number = 0;
+  public isDropdownOpen: boolean = false;
 
   constructor(
     private bookingsService: BookingsService,
@@ -33,8 +41,8 @@ export class RoomsPageComponent implements OnInit {
     this.bookingsService.getBookings().subscribe({
       next: (result) => {
         this.bookings = result;
-        const today = new Date().toISOString().split('T')[0]; 
-        this.bookings = result.filter(booking => booking.date >= today);
+        const today = new Date().toISOString().split('T')[0];
+        this.bookings = result.filter((booking) => booking.date >= today);
         this.getRoomsList();
       },
       error: (error) => {
@@ -82,5 +90,19 @@ export class RoomsPageComponent implements OnInit {
     return this.bookings.filter(
       (booking) => booking.roomId === roomId && booking.date === date
     );
+  }
+
+  toggleDropdown(event: Event) {
+    event.stopPropagation();
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  stopProp(event: Event) {
+    event.stopPropagation();
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: Event) {
+    this.isDropdownOpen = false;
   }
 }
