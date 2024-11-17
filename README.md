@@ -9,8 +9,9 @@ Detta projekt är byggt med **Angular (frontend)** och **Express (backend)**. F�
 Se till att du har följande installerat:
 - [Node.js](https://nodejs.org/) alternativt [NVM](https://github.com/coreybutler/nvm-windows) (minst version 18.9.1)
 - [npm](https://www.npmjs.com/) (installeras med Node.js)
-- Angular CLI: Om du inte har Angular CLI installera det med kommandot:
+- Följ dessa steg:
   ```
+  Om du inte har Angular CLI installera det med kommandot
   npm install -g @angular/cli
 
   git clone https://github.com/jamil-source/compileit_booking.git
