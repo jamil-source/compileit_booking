@@ -149,9 +149,11 @@ export class RoomsPageComponent implements OnInit {
   handleBooking() {
     if (!this.selectedBooking) return;
 
-    if (!this.selectedBooking.bookerName) {
-      this.dataSharingService.setBooking(this.selectedBooking);
-      this.router.navigate(['/boka']);
-    }
+    this.dataSharingService.setBooking(this.selectedBooking);
+    this.dataSharingService.setRooms(this.rooms);
+
+    !this.selectedBooking.bookerName
+      ? this.router.navigate(['/boka'])
+      : this.router.navigate(['/avboka']);
   }
 }

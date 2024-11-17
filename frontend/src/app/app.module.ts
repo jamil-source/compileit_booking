@@ -12,6 +12,7 @@ import { SweDatePipe } from './shared/pipes/swe-date.pipe';
 import { BookingPageComponent } from './views/booking-page/booking-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModalComponent } from './shared/components/shared-modal/shared-modal.component';
+import { CancelBookingPageComponent } from './views/cancel-booking-page/cancel-booking-page.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SharedModalComponent } from './shared/components/shared-modal/shared-mo
     SweDatePipe,
     BookingPageComponent,
     SharedModalComponent,
+    CancelBookingPageComponent,
   ],
   imports: [
     BrowserModule,

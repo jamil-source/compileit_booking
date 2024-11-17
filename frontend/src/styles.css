@@ -10,7 +10,7 @@
 }
 
 .color-success {
-  color: #004c3f;
+  color: #004c3f !important;
 }
 
 .background-color-success {

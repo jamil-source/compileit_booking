@@ -16,7 +16,7 @@ export class BookingsService {
   }
 
   putBooking(bookerName: string, id: number): Observable<IBookingPUTResponse> {
-    if (!bookerName || !id) return null;
+    if (!id) return null;
 
     const bodyData = { bookerName };
 
