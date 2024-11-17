@@ -11,6 +11,7 @@ import {
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { DataSharingService } from '../../services/shared/data-sharing.service';
+import { ModalService } from '../../services/shared/modal.service';
 
 @Component({
   selector: 'app-rooms-page',
@@ -38,7 +39,8 @@ export class RoomsPageComponent implements OnInit {
     private bookingsService: BookingsService,
     private roomsService: RoomsService,
     private router: Router,
-    private dataSharingService: DataSharingService
+    private dataSharingService: DataSharingService,
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
@@ -48,13 +50,12 @@ export class RoomsPageComponent implements OnInit {
   getBookingsList() {
     this.bookingsService.getBookings().subscribe({
       next: (result) => {
-        const today = new Date().toISOString().split('T')[0];
-        this.bookings = result.filter((booking) => booking.date >= today);
-        this.bookingsCopy = result.filter((booking) => booking.date >= today);
+        this.sortAndFilterBookings(result);
         this.getRoomsList();
       },
       error: (error) => {
-        console.log(error);
+        this.modalService.messageOutput(error?.error?.message);
+        this.modalService.isErrorOutput(true);
       },
     });
   }
@@ -66,9 +67,25 @@ export class RoomsPageComponent implements OnInit {
         this.setupVisibleDates();
       },
       error: (error) => {
-        console.log(error);
+        this.modalService.messageOutput(error?.error?.message);
+        this.modalService.isErrorOutput(true);
       },
     });
+  }
+
+  sortAndFilterBookings(bookings: IBooking[]) {
+    const today = new Date().toISOString().split('T')[0];
+
+    this.bookings = bookings.filter((booking) => booking.date >= today);
+    this.bookingsCopy = bookings.filter((booking) => booking.date >= today);
+
+    const parseDateTime = (booking: IBooking) => {
+      const bookingDateTime = `${booking.date}T${booking.startTime}:00`;
+      return new Date(bookingDateTime).getTime();
+    };
+
+    this.bookings.sort((a, b) => parseDateTime(a) - parseDateTime(b));
+    this.bookingsCopy.sort((a, b) => parseDateTime(a) - parseDateTime(b));
   }
 
   setupVisibleDates() {

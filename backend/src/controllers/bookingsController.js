@@ -7,7 +7,7 @@ const getBookingsList = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "Lista med bokningar kan inte hämtas" });
+      .json({ message: "Lista med bokningar kan inte hämtas!" });
   }
 };
 
@@ -20,14 +20,14 @@ const putBooking = async (req, res) => {
 
     if (!nameRegex.test(bookerName)) {
       return res.status(400).json({
-        message: "Namnet innehåller otillåtna tecken.",
+        message: "Namnet innehåller otillåtna tecken!",
       });
     }
 
     const booking = await Booking.findByPk(id);
 
     if (!booking) {
-      return res.status(404).json({ message: "Bokningen hittades inte." });
+      return res.status(404).json({ message: "Bokningen hittades inte!" });
     }
 
     booking.bookerName = bookerName;
@@ -41,7 +41,7 @@ const putBooking = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Ett fel inträffade när bokningen skulle uppdateras.",
+      message: "Ett fel inträffade när bokningen skulle uppdateras!",
     });
   }
 };

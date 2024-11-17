@@ -100,28 +100,27 @@
         <tr>
           @for (date of shownDates; track $index) {
           <td class="align-top">
-            @for (room of rooms; track $index) {
             <div>
-              @for (booking of getBookingsForRoomAndDate(room.id, date); track
-              $index) {
+              @for (booking of bookings; track $index) { @for (room of rooms;
+              track $index) { @if (booking.roomId === room.id && booking.date
+              === date) {
               <div
                 class="p-3 mb-3 border rounded shadow-sm room-content"
                 (click)="selectBooking(booking)"
                 [ngClass]="{
-                  'background-color-booked text-white': booking.bookerName,
-                  'border-color-success border-2': !booking.bookerName,
-                  'background-color-success text-white opacity-75':
-                    (selectedBooking === booking) && !booking.bookerName,
-                  'opacity-75':
-                    (selectedBooking === booking) && booking.bookerName,
-                }"
+                    'background-color-booked text-white': booking.bookerName,
+                    'border-color-success border-2': !booking.bookerName,
+                    'background-color-success text-white opacity-75':
+                      (selectedBooking === booking) && !booking.bookerName,
+                    'opacity-75':
+                      (selectedBooking === booking) && booking.bookerName,
+                  }"
               >
                 <p>{{ room.name }} ({{ room.maximumAmount }})</p>
                 <p>{{ booking.startTime }} - {{ booking.endTime }}</p>
               </div>
-              }
+              } } }
             </div>
-            }
           </td>
           }
         </tr>
