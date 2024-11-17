@@ -1,0 +1,20 @@
+<div
+  class="modal fade"
+  id="sharedModal"
+  tabindex="-1"
+  aria-labelledby="sharedModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+    <div class="modal-content py-5 w-75">
+      <div
+        class="modal-body d-flex justify-content-center flex-column align-items-center"
+      >
+        <p class="fs-5">{{ message }}</p>
+        @if (icon) {
+        <fa-icon class="fs-2" [icon]="icon"></fa-icon>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SweDatePipe } from './shared/pipes/swe-date.pipe';
 import { BookingPageComponent } from './views/booking-page/booking-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModalComponent } from './shared/components/shared-modal/shared-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RoomsPageComponent,
     SweDatePipe,
     BookingPageComponent,
+    SharedModalComponent,
   ],
   imports: [
     BrowserModule,
