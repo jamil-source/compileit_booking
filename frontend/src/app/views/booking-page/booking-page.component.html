@@ -32,9 +32,5 @@
     </div>
     }
   </div>
-  <app-shared-btn
-    [text]="'Boka'"
-    [disabled]="bookingForm.invalid"
-    (clicked)="bookRoom()"
-  ></app-shared-btn>
+  <app-shared-btn [text]="'Boka'" (clicked)="bookRoom()"></app-shared-btn>
 </div>

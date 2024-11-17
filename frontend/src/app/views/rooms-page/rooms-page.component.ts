@@ -50,7 +50,6 @@ export class RoomsPageComponent implements OnInit {
       next: (result) => {
         const today = new Date().toISOString().split('T')[0];
         this.bookings = result.filter((booking) => booking.date >= today);
-        console.log(this.bookings);
         this.bookingsCopy = result.filter((booking) => booking.date >= today);
         this.getRoomsList();
       },

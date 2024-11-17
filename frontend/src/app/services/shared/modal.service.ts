@@ -13,6 +13,9 @@ export class ModalService {
   private iconSource = new BehaviorSubject<IconDefinition>(null);
   public currentIcon$ = this.iconSource.asObservable();
 
+  private isErrorSource = new BehaviorSubject<boolean>(false);
+  public erroState$ = this.isErrorSource.asObservable();
+
   constructor() {}
 
   messageOutput(message: string) {
@@ -21,5 +24,9 @@ export class ModalService {
 
   iconOutput(icon: IconDefinition) {
     this.iconSource.next(icon);
+  }
+
+  isErrorOutput(isError: boolean) {
+    this.isErrorSource.next(isError);
   }
 }

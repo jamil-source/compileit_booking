@@ -30,16 +30,14 @@ export class BookingPageComponent {
   ngOnInit() {
     this.getBooking();
     this.initiliazeBookingForm();
-    this.modalService.messageOutput('Ditt rum är bokat!');
-    this.modalService.iconOutput(this.faSmile);
   }
 
   getBooking() {
     this.booking = this.dataSharingService.getBooking();
 
-    /* if (!this.booking) {
+    if (!this.booking) {
       this.router.navigate(['/rum']);
-    } */
+    }
   }
 
   initiliazeBookingForm() {
@@ -67,10 +65,13 @@ export class BookingPageComponent {
       .putBooking(newBookerNameValue, this.booking.id)
       .subscribe({
         next: (result) => {
-          console.log(result);
+          this.modalService.messageOutput(result?.message);
+          this.modalService.iconOutput(this.faSmile);
+          this.router.navigate(['/rum']);
         },
         error: (error) => {
-          console.log(error);
+          this.modalService.messageOutput(error?.error?.message);
+          this.modalService.isErrorOutput(true);
         },
       });
   }

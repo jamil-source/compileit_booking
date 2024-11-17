@@ -10,7 +10,14 @@
       <div
         class="modal-body d-flex justify-content-center flex-column align-items-center"
       >
-        <p class="fs-5">{{ message }}</p>
+        <p
+          class="fs-5"
+          [ngClass]="{
+            'text-danger': isError
+          }"
+        >
+          {{ message }}
+        </p>
         @if (icon) {
         <fa-icon class="fs-2" [icon]="icon"></fa-icon>
         }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { IBooking } from '../../interfaces/Bookings/IBooking.interface';
+import { IBookingPUTResponse } from '../../interfaces/Bookings/IBookingPUTResponse.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +15,12 @@ export class BookingsService {
     return this.http.get<IBooking[]>(`${environment.restUrl}/bookings`);
   }
 
-  putBooking(bookerName: string, id: number): Observable<IBooking> {
+  putBooking(bookerName: string, id: number): Observable<IBookingPUTResponse> {
     if (!bookerName || !id) return null;
 
     const bodyData = { bookerName };
 
-    return this.http.put<IBooking>(
+    return this.http.put<IBookingPUTResponse>(
       `${environment.restUrl}/bookings/${id}`,
       bodyData
     );

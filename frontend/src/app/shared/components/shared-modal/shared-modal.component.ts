@@ -1,5 +1,5 @@
 // shared-modal.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
 import { ModalService } from '../../../services/shared/modal.service';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,7 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 export class SharedModalComponent implements OnInit {
   public message: string = '';
   public icon: IconDefinition;
+  public isError: boolean = false;
 
   public modalInstance: bootstrap.Modal;
 
@@ -29,6 +30,10 @@ export class SharedModalComponent implements OnInit {
     this.modalService.currentIcon$.subscribe((icon) => {
       this.icon = icon;
     });
+
+    this.modalService.erroState$.subscribe((isError) => {
+      this.isError = isError;
+    });
   }
 
   openModal() {
@@ -39,5 +44,12 @@ export class SharedModalComponent implements OnInit {
     }
 
     this.modalInstance.show();
+
+    setTimeout(() => {
+      this.modalInstance.hide();
+      this.message = '';
+      this.icon = null;
+      this.isError = false;
+    }, 3000);
   }
 }
