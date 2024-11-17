@@ -18,7 +18,7 @@
         ></fa-icon>
       </button>
       <div
-        class="dropdown-menu p-4"
+        class="dropdown-menu p-4 shadow-lg"
         (click)="stopProp($event)"
         aria-labelledby="dropdownMenuClickableInside"
       >
@@ -109,16 +109,15 @@
                 (click)="selectBooking(booking)"
                 [ngClass]="{
                   'background-color-booked text-white': booking.bookerName,
-                  'border-success border-2': !booking.bookerName,
-                  'background-color-success text-white':
-                    selectedBooking === booking && !booking.bookerName
+                  'border-color-success border-2': !booking.bookerName,
+                  'background-color-success text-white opacity-75':
+                    (selectedBooking === booking) && !booking.bookerName,
+                  'opacity-75':
+                    (selectedBooking === booking) && booking.bookerName,
                 }"
               >
                 <p>{{ room.name }} ({{ room.maximumAmount }})</p>
                 <p>{{ booking.startTime }} - {{ booking.endTime }}</p>
-                @if(booking.bookerName){
-                <p class="text-warning">Bokad av: {{ booking.bookerName }}</p>
-                }
               </div>
               }
             </div>
