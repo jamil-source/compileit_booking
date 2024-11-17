@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { specialCharactersValidator } from '../../shared/validators/special-characters.validator';
 import { fullNameValidator } from '../../shared/validators/fullname.validator';
+import { BookingsService } from '../../services/http/bookings.service';
 
 @Component({
   selector: 'app-booking-page',
@@ -18,7 +19,8 @@ export class BookingPageComponent {
   constructor(
     private dataSharingService: DataSharingService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private bookingsService: BookingsService
   ) {}
 
   ngOnInit() {
@@ -50,5 +52,20 @@ export class BookingPageComponent {
   validateOnBlur() {
     this.bookingForm.controls['fullname'].markAsTouched();
     this.bookingForm.controls['fullname'].updateValueAndValidity();
+  }
+
+  bookRoom() {
+    const newBookerNameValue = this.bookingForm.controls['fullname'].value;
+
+    this.bookingsService
+      .putBooking(newBookerNameValue, this.booking.id)
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 }
