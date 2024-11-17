@@ -7,7 +7,7 @@ Detta projekt är byggt med **Angular (frontend)** och **Express (backend)**. F�
 ## Förutsättningar
 
 Se till att du har följande installerat:
-- [Node.js](https://nodejs.org/) alternativt [NVM](https://github.com/coreybutler/nvm-windows) (minst version 18.9.1)
+- [Node.js](https://nodejs.org/) (alternativt via [NVM](https://github.com/coreybutler/nvm-windows)) (minst version 18.9.1)
 - [npm](https://www.npmjs.com/) (installeras med Node.js)
 - Följ dessa steg:
   ```
