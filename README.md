@@ -1,6 +1,6 @@
 # Compileit_booking
 
-Detta projekt är byggt med **Angular (frontend)** och **Express (backend)**. Följ dessa enkla steg för att sätta upp och köra det lokalt.
+Detta projekt är byggt med **Angular (frontend)** och **Express/Node.js (backend)**. Följ dessa enkla steg för att sätta upp och köra det lokalt.
 
 ---
 
