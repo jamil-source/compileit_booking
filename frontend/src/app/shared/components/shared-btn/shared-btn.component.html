@@ -1,0 +1,8 @@
+<button
+  type="button"
+  class="btn btn-dark text-white rounded-pill position-fixed start-50 col-lg-4 col-md-6 col-sm-10 col-10 translate-middle-x mb-5 py-3 custom-position"
+  [ngClass]="{ 'disabled-btn': disabled }"
+  (click)="clickEvent()"
+>
+  {{ text }}
+</button>

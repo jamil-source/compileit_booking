@@ -1,0 +1,9 @@
+.custom-position {
+  bottom: 20px;
+  z-index: 1000;
+}
+
+.disabled-btn {
+  opacity: 0.6;
+  pointer-events: none;
+}

@@ -1,0 +1,133 @@
+<div class="container py-5">
+  <h1 class="general-header">Välj en tid</h1>
+  <div>
+    <div class="fw-500 mb-5">
+      <button
+        class="btn border p-3 pe-5 fs-5"
+        type="button"
+        id="dropdownMenuClickableInside"
+        data-bs-toggle="dropdown"
+        data-bs-auto-close="outside"
+        aria-expanded="false"
+        (click)="toggleDropdown($event)"
+      >
+        Mötesrum
+        <fa-icon
+          class="ms-5 p-0"
+          [icon]="isDropdownOpen ? faChevronUp : faChevronDown"
+        ></fa-icon>
+      </button>
+      <div
+        class="dropdown-menu p-4 shadow-lg"
+        (click)="stopProp($event)"
+        aria-labelledby="dropdownMenuClickableInside"
+      >
+        @for (room of rooms; track $index) {
+        <div
+          class="form-check form-check-reverse d-flex justify-content-between align-items-center checkbox-lg"
+        >
+          <label class="form-check-label me-5 mb-2 mt-2" for="{{ room.id }}">
+            {{ room?.name }} ({{ room.maximumAmount }} personer)
+          </label>
+          <input
+            class="form-check-input customized-checkbox"
+            type="checkbox"
+            [checked]="filterList.includes(room.id)"
+            (change)="addToFilterList(room.id, $event)"
+            value=""
+            id="{{ room.id }}"
+          />
+        </div>
+        }
+        <div class="d-flex justify-content-center mt-4">
+          <button
+            (click)="filterBookings()"
+            type="button"
+            class="btn btn-dark text-white me-2 px-3 rounded-4 customize-button"
+          >
+            Välj
+          </button>
+          <button
+            type="button"
+            (click)="uncheckAll()"
+            class="btn btn-dark text-white px-3 rounded-4 customize-button"
+          >
+            Avmarkera
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between mb-4">
+    <button
+      class="btn btn-outline-dark rounded-circle mx-2"
+      (click)="prevDate()"
+      [disabled]="activeDateIndex === 0"
+    >
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </button>
+    <div class="text-lg h5 font-semibold">
+      <span>
+        {{
+          shownDates.length > 0
+            ? (shownDates[0] | sweDate) + " - " + (shownDates[2] | sweDate)
+            : ""
+        }}
+      </span>
+    </div>
+    <button
+      class="btn btn-outline-dark rounded-circle mx-2"
+      (click)="nextDate()"
+      [disabled]="activeDateIndex + 3 >= uniqueDatesCount"
+    >
+      <fa-icon [icon]="faArrowRight"></fa-icon>
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          @for (date of shownDates; track $index) {
+          <th class="text-center h4 pt-3 pb-3">
+            {{ date | sweDate }}
+          </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          @for (date of shownDates; track $index) {
+          <td class="align-top">
+            <div>
+              @for (booking of bookings; track $index) { @for (room of rooms;
+              track $index) { @if (booking.roomId === room.id && booking.date
+              === date) {
+              <div
+                class="p-3 mb-3 border rounded shadow-sm room-content"
+                (click)="selectBooking(booking)"
+                [ngClass]="{
+                    'background-color-booked text-white': booking.bookerName,
+                    'border-color-success border-2': !booking.bookerName,
+                    'background-color-success text-white opacity-75':
+                      (selectedBooking === booking) && !booking.bookerName,
+                    'opacity-75':
+                      (selectedBooking === booking) && booking.bookerName,
+                  }"
+              >
+                <p>{{ room.name }} ({{ room.maximumAmount }})</p>
+                <p>{{ booking.startTime }} - {{ booking.endTime }}</p>
+              </div>
+              } } }
+            </div>
+          </td>
+          }
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  @if(selectedBooking){
+  <app-shared-btn (clicked)="handleBooking()" [text]="'Nästa'"></app-shared-btn>
+  }
+</div>

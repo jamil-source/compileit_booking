@@ -1,0 +1,14 @@
+.customize-button {
+  width: 138px;
+  padding: 13px 0px;
+}
+
+.room-content {
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .dropdown-menu {
+    width: 95%;
+  }
+}

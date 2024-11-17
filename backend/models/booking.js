@@ -1,6 +1,6 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+const { DataTypes, Model } = require("sequelize");
 
-export default (sequelize: Sequelize) => {
+module.exports = (sequelize) => {
   class Booking extends Model {}
 
   Booking.init(
