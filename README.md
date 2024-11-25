@@ -1,13 +1,13 @@
 # Compileit_booking
 
-Detta projekt är byggt med **Angular (frontend)** och **Express (backend)**. Följ dessa enkla steg för att sätta upp och köra det lokalt.
+Detta projekt är byggt med **Angular (frontend)** och **Express/Node.js (backend)**. Följ dessa enkla steg för att sätta upp och köra det lokalt.
 
 ---
 
 ## Förutsättningar
 
 Se till att du har följande installerat:
-- [Node.js](https://nodejs.org/) (alternativt via [NVM](https://github.com/coreybutler/nvm-windows)) (minst version 18.9.1)
+- [Node.js](https://nodejs.org/) (alternativt via [NVM](https://github.com/coreybutler/nvm-windows)) (minst version 18.19.1)
 - [npm](https://www.npmjs.com/) (installeras med Node.js)
 - Följ dessa steg:
   ```
